@@ -70,8 +70,10 @@ int gobang_algorithm::num_go_four(int direction, int x, int y){
 		|| countA + countB == 1 && jumpA == 2 && jumpB == 2)
 		return 2;
 	if (count_space == 1 && (countA + countB + jumpA == 3 || countA + countB + jumpB == 3)){
-		//std::cout << "num_space" << count_space << std::endl;
 		//fl_alert("num_space :%d, countA: %d, countB: %d",count_space, countA, countB);
+		return 1;
+	}
+	if(count_space==2 && countA + countB != 3 && (countA + countB + jumpA == 3 || countA + countB + jumpB == 3 ) ){
 		return 1;
 	}
 	return 0;
@@ -186,7 +188,7 @@ int gobang_algorithm::check_black(int x, int y){
 	_fori(0, 4){
 		line_four += num_go_four(i, x, y);
 		live_four += num_live_four(i, x, y);
-		live_three += num_live_three(i, x, y);
+		live_three += num_live_three(i, x, y);	
 	}
 	if (line_four + live_four >= 2){
 		//fl_alert("return 3, line_four: %d, live_four:%d ",line_four, live_four);
